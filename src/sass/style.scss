@@ -208,21 +208,6 @@ a.nav-link.active {
 }
 
 
-/* 分頁樣式 */
-.restaurant-show-title {
-  position: relative;
-  top: -100px;
-  color: var(--restaurant-show-title-text-color);
-  text-align: center;
-  font-size: 5rem;
-  box-shadow: var(--restaurant-show-title-text-shadow);
-  -webkit-box-shadow: var(--restaurant-show-title-text-shadow);
-  -moz-box-shadow: var(--restaurant-show-title-text-shadow);
-  line-height: 1.1;
-  text-shadow: var(--text-shadow);
-}
-
-
 /* 導入媒體查詢 */
 @media screen and (max-width: 992px) {
   .card img {

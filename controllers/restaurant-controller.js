@@ -32,6 +32,14 @@ const restaurantController = {
         })
       })
       .catch(err => next(err))
+  },
+  getRestaurant: (req, res, next) => {
+    const restaurantId = req.params.id
+    return Restaurant.findByPk(restaurantId, {
+      raw: true
+    })
+      .then(restaurant => res.render('restaurant', { restaurant }))
+      .catch(err => next(err))
   }
 }
 

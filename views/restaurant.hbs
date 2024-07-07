@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row d-flex align-items-center justify-content-center">
+    {{!-- 圖片 --}}
+    <div class="col-md-5 col-sm-12 col-xs-12 me-5">
+      <img src="{{restaurant.image}}" alt="{{restaurant.name}}" class="rounded mb-4 w-100   mt-3">
+    </div>
+
+    {{!-- 敘述 --}}
+    <div class="col-md-5 col-sm-12 col-xs-12">
+        <h3 class="pt-3 mb-3">
+          <strong>
+            {{restaurant.name}}
+          </strong>
+        </h3>
+        
+        <p class="mb-1">
+          <span class="text-secondary-emphasis">
+            <i class="fas fa-utensils pr-2"></i> 類別:</span>
+          {{restaurant.category}}
+        </p>
+        
+        <p class="mb-1">
+          <span class="text-secondary-emphasis">
+            <i class="fas fa-map-marker-alt pr-2"></i> 地址:</span>
+          <a href="{{restaurant.google_map}}" , target="_blank">
+            {{restaurant.location}} </a>
+        </p>
+        
+        <p class="mb-1">
+          <span class="text-secondary-emphasis">
+            <i class="fas fa-mobile-alt pr-2"></i> 電話:</span>
+          {{restaurant.phone}}
+        </p>
+        
+        <p class="mb-3">
+          <span class="text-secondary-emphasis">
+            <i class="fas fa-star fa-xs"></i>
+            評價:</span> {{restaurant.rating}}分
+        </p>
+        
+        <p style="line-height: 1.5rem;"> {{restaurant.description}} </p>
+
+      {{!-- 按鈕 --}}
+      <div class="d-flex justify-content-center mt-4">
+        <a class="btn btn-outline-secondary me-3" href="/restaurants">Back</a>
+        <a href="/restaurants/{{restaurant.id}}/edit" class="btn btn-outline-success" style="text-align: center;">Edit</a>
+      </div>
+
+    </div>
+  </div>
+</div>

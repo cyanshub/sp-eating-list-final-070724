@@ -20,6 +20,7 @@ router.get('/logout', userController.logOut)
 
 // 設計路由: 餐廳相關
 router.get('/restaurants', authenticated, restaurantController.getRestaurants)
+router.get('/restaurants/:id', authenticated, restaurantController.getRestaurant)
 
 // 設計路由: 應用程式報錯
 router.get('/', (req, res) => res.redirect('/restaurants'))
