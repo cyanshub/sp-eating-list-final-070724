@@ -30,7 +30,7 @@ const userController = {
         })
       })
       .then(newUser => {
-        // req.flash('success_messages', '成功註冊帳號!')
+        req.flash('success_messages', '成功註冊帳號!')
         return res.redirect('/signin')
       })
       .catch(err => next(err))
@@ -40,11 +40,11 @@ const userController = {
   },
   signIn: (req, res, next) => {
     // 實際的登入功能已經由 passport 以 middlewares 的形式處理
-    // req.flash('success_messages', '登入成功!')
+    req.flash('success_messages', '登入成功!')
     return res.redirect('/restaurants')
   },
   logOut: (req, res, next) => {
-    // req.flash('success_messages', '登出成功!')
+    req.flash('success_messages', '登出成功!')
     req.logout()
     res.redirect('/signin')
   }

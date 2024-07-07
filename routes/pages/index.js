@@ -8,6 +8,7 @@ const restaurantController = require('../../controllers/restaurant-controller')
 // 載入 middleware
 const passport = require('../../config/passport') // 負責使用者登入與驗證相關
 const { authenticated } = require('../../middlewares/auth')
+const { generalErrorHandler } = require('../../middlewares/error-handler')
 
 // 設計路由
 // 設計路由: 使用者登入相關
@@ -19,6 +20,9 @@ router.get('/logout', userController.logOut)
 
 // 設計路由: 餐廳相關
 router.get('/restaurants', authenticated, restaurantController.getRestaurants)
+
+// 設計路由: 應用程式報錯
 router.get('/', (req, res) => res.redirect('/restaurants'))
+router.use('/', generalErrorHandler)
 
 module.exports = router

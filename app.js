@@ -8,6 +8,7 @@ const express = require('express')
 const handlebars = require('express-handlebars')
 const path = require('path')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('./config/passport.js')
 const { getUser } = require('./helpers/auth-helpers.js')
@@ -30,6 +31,9 @@ app.use('/upload', express.static(path.join(__dirname, 'upload')))
 app.use(express.urlencoded({ extended: true })) // 啟用 req.body
 app.use(methodOverride('_method')) // 遵循RESTful 精神撰寫路由
 
+// middleware: 啟用 Flash Message
+app.use(flash())
+
 // middleware: 設定 passport
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false, cookie: { secure: false } }))
 
@@ -38,6 +42,8 @@ app.use(passport.session()) // 啟動 passport 的 session 功能; 必須放在�
 
 // middleware: 設定所有路由都會經過的 middleware
 app.use((req, res, next) => {
+  res.locals.success_messages = req.flash('success_messages')
+  res.locals.error_messages = req.flash('error_messages')
   res.locals.userAuth = getUser(req)
   next()
 })
