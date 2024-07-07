@@ -21,6 +21,20 @@ a {
   color: $blue
 }
 
+.btn-second-color {
+  color: $brown;
+}
+
+.background-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.small-link {
+  font-size: 1rem;
+}
+
 // 自訂樣式
 .text-container {
   color: $grey;
@@ -66,4 +80,168 @@ a {
   /* 使其位於較高層級，避免被其他元素遮蔽 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 添加陰影效果 */
+}
+
+
+// 複寫 bootstrap 樣式
+a.nav-link {
+  color: #495057 !important;
+}
+
+a.nav-link.text-container {
+  color: #FFFFFF8C !important;
+}
+
+a.nav-link.active {
+  color: $brown !important;
+  background-color: #FFFFFF !important;
+}
+
+
+// 專案樣式
+/* 顏色參數化 */
+:root {
+  --main-text-color: #212529;
+  --main-background-color: #f6f7f8;
+  --navbar-brand-text-color: #4592af;
+  --navbar-brand-hover-text-color: #226089;
+
+  --search-bar-outer-background-color: #fce2cf;
+  --search-bar-outer-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  --search-bar-inner-text-color: #9b4b4b;
+  --btn-major-text-color: #fff;
+  --btn-major-background-color: #9b4b4b;
+  --placeholder-text-color: #aaaaaa;
+
+
+  --form-control-focus-shadow: none;
+  --form-control-focus-border-color: #ced4da;
+
+  --card-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  --card-text-color: #666666;
+  --restaurant-show-title-text-color: white;
+  --restaurant-show-title-text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  --text-shadow: 1px 1px black;
+}
+
+
+/* 制定 banner 樣式 */
+.banner {
+  position: relative;
+  z-index: -10;
+  margin: -5px;
+  height: 300px;
+  background-image: url('/images/banner/banner-photo-1.jpg');
+  filter: blur(3px);
+}
+
+/* 撰寫 search-bar 樣式 */
+.search-bar .search-bar-outer {
+  margin: 0 auto;
+  max-width: 680px;
+  background: var(--search-bar-outer-background-color);
+  border-radius: 8px;
+  padding: 20px 30px;
+  margin-top: -120px;
+  box-shadow: var(--search-bar-outer-shadow);
+  -webkit-box-shadow: var(--search-bar-outer-shadow);
+  -moz-box-shadow: var(--search-bar-outer-shadow);
+}
+
+.search-bar .search-bar-inner h4 {
+  color: var(--search-bar-inner-text-color);
+}
+
+.search-bar .btn-major {
+  color: var(--btn-major-text-color);
+  background: var(--btn-major-background-color);
+}
+
+.form-control::placeholder {
+  color: var(--placeholder-text-color);
+  font-size: 0.8rem;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border: var(--form-control-focus-border-color);
+}
+
+
+/* 撰寫圖片集樣式 */
+.album-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-gap: 1.5rem;
+}
+
+.card {
+  box-shadow: var(--card-shadow);
+  -webkit-box-shadow: var(--card-shadow);
+  -moz-box-shadow: var(--card-shadow);
+
+  width: 100%;
+  height: 95%;
+  overflow: hidden;
+}
+
+.card img {
+  display: block;
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.card-text {
+  color: var(--card-text-color);
+  font-size: 0.8rem;
+}
+
+
+/* 分頁樣式 */
+.restaurant-show-title {
+  position: relative;
+  top: -100px;
+  color: var(--restaurant-show-title-text-color);
+  text-align: center;
+  font-size: 5rem;
+  box-shadow: var(--restaurant-show-title-text-shadow);
+  -webkit-box-shadow: var(--restaurant-show-title-text-shadow);
+  -moz-box-shadow: var(--restaurant-show-title-text-shadow);
+  line-height: 1.1;
+  text-shadow: var(--text-shadow);
+}
+
+
+/* 導入媒體查詢 */
+@media screen and (max-width: 992px) {
+  .card img {
+    height: 115px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .restaurant-show-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .card img {
+    height: auto;
+  }
+
+  .restaurant-show-title {
+    font-size: 2rem;
+  }
 }

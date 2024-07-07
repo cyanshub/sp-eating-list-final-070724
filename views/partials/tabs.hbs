@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs mb-4">
+  {{!-- 首頁 --}}
+  <li class="nav-item">
+    <a class="nav-link btn-color
+    {{#ifCond route 'restaurants'}} active {{/ifCond}}" href="/restaurants">所有店家
+    </a>
+  </li>
+
+  {{!-- 使用者與店家的關係 --}}
+  <li class="nav-item">
+    <a class="nav-link btn-color
+    {{#ifCond route 'ownerships'}} active {{/ifCond}}" href="/ownerships">擁有店家
+    </a>
+  </li>
+
+</ul>

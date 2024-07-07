@@ -1,1 +1,41 @@
-<h3>Hello, World!</h3>
+{{> search-bar}}
+
+<div class="container mt-5">
+  {{!-- 頁籤 --}}
+  {{> tabs route = 'restaurants'}}
+
+  <div class="album-wrapper">
+    {{#each restaurants}}
+    <div class="card mb-3">
+
+      {{!-- 點擊圖片也能查看單一餐廳 --}}
+      <a href="/restaurants/{{this.id}}">   
+        <img src="{{this.image}}" alt="{{this.name}}" class="card-img-top">
+      </a>
+
+      <div class="card-body text-secondary-emphasis">
+        <h6 class="card-title mb-1">{{this.name}}</h6>
+        <div class="card-text">
+          <i class="fas fa-utensils pr-2"></i>
+          {{this.category}}
+        </div>
+        
+        <div class="card-text text-secondary"> 
+          <i class="fas fa-star fa-xs"></i>
+          {{this.rating}}
+        </div>
+      </div>
+
+      {{!-- 新增 buttons --}}
+      <div class="d-flex justify-content-end align-items-center d-grid gap-1 mb-1">
+        <a href="/restaurants/{{this.id}}/edit" class="me-3 small-link btn-second-color">Edit</a>
+        <a href="/restaurants/{{this.id}}" class="small-link btn-second-color">Detail</a>
+        <form action="/restaurants/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
+          <button type="submit" class="small-link btn btn-link btn-second-color" style="text-decoration: none;">Delete</button>
+        </form>
+      </div>
+      
+    </div>
+    {{/each}}
+  </div>
+</div>
