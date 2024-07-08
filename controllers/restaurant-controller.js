@@ -46,7 +46,7 @@ const restaurantController = {
       .catch(err => next(err))
   },
   newRestaurant: (req, res, next) => {
-    return res.render('restaurants/new')
+    return res.render('restaurants/new-restaurant')
   },
   postRestaurant: (req, res, next) => {
     // 拿到表單變數
@@ -82,7 +82,7 @@ const restaurantController = {
     })
       .then(restaurant => {
         if (!restaurant) throw new Error('店家不存在!')
-        return res.render('restaurants/edit', { restaurant })
+        return res.render('restaurants/edit-restaurant', { restaurant })
       })
 
       .catch(err => next(err))

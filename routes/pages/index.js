@@ -19,6 +19,12 @@ router.get('/signin', userController.signInPage)
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn) // 直接使用passport提供的方法進行登入驗證
 router.get('/logout', userController.logOut)
 
+// 設計路由: 使用者相關
+router.get('/users/:id', authenticated, userController.getUser)
+router.get('/users/:id/edit', authenticated, userController.editUser)
+router.put('/users/:id', authenticated, upload.single('avatar'), userController.putUser)
+router.put('/avatars/:userId', authenticated, userController.putAvatar)
+
 // 設計路由: 餐廳相關
 router.get('/restaurants', authenticated, restaurantController.getRestaurants)
 router.get('/restaurants/new', authenticated, restaurantController.newRestaurant)
