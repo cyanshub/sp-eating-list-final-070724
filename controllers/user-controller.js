@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // 載入 models
-const { User } = require('../models')
+const { User, Restaurant } = require('../models')
 
 // 載入所需工具
 const bcrypt = require('bcryptjs')
@@ -50,13 +50,25 @@ const userController = {
     res.redirect('/signin')
   },
   getUser: (req, res, next) => {
-    return User.findByPk(req.params.id, {
-      attributes: { exclude: ['password'] }
-    })
-      .then(user => {
+    return Promise.all([
+      User.findByPk(req.params.id, {
+        attributes: { exclude: ['password'] }
+      }),
+      User.findByPk(req.params.id, {
+        attributes: { exclude: ['password'] },
+        include: [{
+          model: Restaurant,
+          as: 'ownedRestaurants',
+          order: [['id', 'DESC']]
+        }]
+      })
+    ])
+      .then(([user, userOwnedRestaurants]) => {
+        const data = userOwnedRestaurants?.ownedRestaurants?.map(item => ({ ...item.toJSON() })) || []
+
         if (!user) throw new Error('使用者不存在!')
         user = user.toJSON() // 整理 user 資料
-        return res.render('users/profile', { user })
+        return res.render('users/profile', { user, restaurants: data })
       })
       .catch(err => next(err))
   },
