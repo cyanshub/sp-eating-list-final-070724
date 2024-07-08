@@ -6,11 +6,38 @@
     </a>
   </li>
 
+    {{!-- 查看店家或編輯 --}}
+    {{#ifCond route 'restaurant'}}
+    <li class="nav-item">
+      <a class="nav-link btn-color
+              {{#ifCond route 'restaurant'}} active {{/ifCond}}" href="#">查看店家
+      </a>
+    </li>
+    {{/ifCond}}
+    
+    {{#ifCond route 'edit'}}
+    <li class="nav-item">
+      <a class="nav-link btn-color
+                  {{#ifCond route 'edit'}} active {{/ifCond}}" href="#">編輯店家
+      </a>
+    </li>
+    {{/ifCond}}
+
+
   {{!-- 使用者與店家的關係 --}}
   <li class="nav-item">
     <a class="nav-link btn-color
     {{#ifCond route 'ownerships'}} active {{/ifCond}}" href="/ownerships">擁有店家
     </a>
   </li>
+
+  {{!-- 新增店家的按鈕 --}}
+  <li class="nav-item">
+    <a class="nav-link btn-color
+      {{#ifCond route 'new'}} active {{/ifCond}}" href="/restaurants/new">新增店家
+    </a>
+  </li>
+
+
 
 </ul>

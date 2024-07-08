@@ -25,7 +25,7 @@ const restaurantController = {
     })
       .then(restaurants => {
         const data = restaurants.rows
-        return res.render('restaurants', {
+        return res.render('restaurants/restaurants', {
           restaurants: data,
           isSearched: '/restaurants', // 決定搜尋表單發送位置
           keyword
@@ -38,8 +38,25 @@ const restaurantController = {
     return Restaurant.findByPk(restaurantId, {
       raw: true
     })
-      .then(restaurant => res.render('restaurant', { restaurant }))
+      .then(restaurant => res.render('restaurants/restaurant', { restaurant }))
       .catch(err => next(err))
+  },
+  newRestaurant: (req, res, next) => {
+    return res.render('restaurants/new')
+  },
+  postRestaurant: (req, res, next) => {
+    res.send('功能開發中!')
+  },
+  editRestaurant: (req, res, next) => {
+    const restaurantId = req.params.id
+    return Restaurant.findByPk(restaurantId, {
+      raw: true
+    })
+      .then(restaurant => res.render('restaurants/edit', { restaurant }))
+      .catch(err => next(err))
+  },
+  putRestaurant: (req, res, next) => {
+    res.send('功能開發中!')
   }
 }
 

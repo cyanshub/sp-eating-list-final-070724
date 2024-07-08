@@ -1,0 +1,108 @@
+<div class="row d-flex align-items-center justify-content-center">
+  {{!-- 圖片 --}}
+
+  <div class="col-md-5 col-sm-12 col-xs-12 me-5">
+    {{#if restaurant.image}}
+    <img src="{{restaurant.image}}" alt="{{restaurant.name}}" class="rounded mb-4 w-100   mt-3">
+    {{else}}
+    <img src="https://fakeimg.pl/400/"  height="400px" />
+    {{/if}}
+  </div>
+ 
+
+  {{!-- 描述說明 --}}
+  <div class="col-md-5 col-sm-12 col-xs-12">
+
+    {{!-- 店家名稱 --}}
+    <div class="form-row pt-3 mb-1">
+      <label class="form-label cursor-pointer" for="name">
+        <strong>店名:</strong>
+      </label>
+      <input type="text" class="" id="name" name="name" value="{{restaurant.name}}" placeholder="請輸入店家名稱">
+    </div>
+
+    {{!-- 店家類別 --}}
+    <div class="form-row mb-1">
+      <span class="text-secondary-emphasis">
+        <i class="fas fa-utensils pr-2"></i><label class="form-label cursor-pointer" for="category">
+
+          <strong>類別:</strong>
+        </label>
+      </span>
+      <input type="text" class="" id="category" name="category" value="{{restaurant.category}}" placeholder="請輸入店家類別">
+    </div>
+
+    {{!-- 店家地址與googlemap --}}
+    <div class="form-row mb-1">
+      <span class="text-secondary-emphasis">
+        <i class="fas fa-map-marker-alt pr-2"></i>
+        <label class="form-label cursor-pointer" for="location">
+
+          <strong>地址:</strong>
+        </label>
+      </span>
+
+
+      <input type="text" class="" id="location" name="location" value="{{restaurant.location}}" placeholder="請輸入店家地址">
+      <input type="text" class="" id="googleMap" name="googleMap" value="{{restaurant.googleMap}}" placeholder="google map 連結">
+    </div>
+
+    {{!-- 店家電話 --}}
+    <div class="form-row mb-1">
+      <span class="text-secondary-emphasis">
+        <i class="fas fa-mobile-alt pr-2"></i>
+        <label class="form-label cursor-pointer" for="phone">
+
+          <strong>電話:</strong>
+        </label>
+      </span>
+
+      <input type="text" class="" id="phone" name="phone" value="{{restaurant.phone}}" placeholder="請輸入店家電話">
+    </div>
+
+
+    {{!-- 店家評價 --}}
+    <div class="form-row mb-3">
+      <span class="text-secondary-emphasis">
+        <i class="fas fa-star fa-xs"></i>
+        <label class="form-label cursor-pointer" for="rating">
+
+          <strong>評價:</strong>
+        </label>
+      </span>
+
+      <input type="text" class="" id="rating" name="rating" value="{{restaurant.rating}}" placeholder="請入店家評價: 1 - 5 顆星">
+    </div>
+
+
+    {{!-- 店家敘述 --}}
+    <div class="form-row mb-3" style="line-height: 1.5rem;">
+      <label class="form-label cursor-pointer" for="description">
+
+        <strong>敘述</strong>
+      </label>
+      <textarea class="form-control" id="description" name="description" rows="3">
+             {{restaurant.description}}
+          </textarea>
+    </div>
+
+
+    {{!-- 封面圖片 --}}
+    <div class="form-row mb-1">
+      <label class="form-label cursor-pointer" for="image">
+
+        <strong>封面</strong>
+      </label>
+      <input type="file" class="form-control form-control-file" id="image" name="image" value="{{restaurant.image}}">
+    </div>
+
+
+
+    {{!-- 按鈕 --}}
+    <div class="d-flex justify-content-center mt-4">
+      <a class="btn btn-outline-secondary me-3" href="/restaurants">Back</a>
+      <button type="submit" class="btn btn-outline-success">Save</button>
+    </div>
+
+  </div>
+</div>
