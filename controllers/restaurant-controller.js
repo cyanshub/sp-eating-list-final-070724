@@ -1,5 +1,5 @@
 // 載入資料表 model
-const { Restaurant } = require('../models')
+const { Restaurant, User } = require('../models')
 
 // 載入所需工具
 const { Op, literal } = require('sequelize') // 引入 sequelize 查詢符、啟用 SQL 語法
@@ -131,6 +131,42 @@ const restaurantController = {
       .then(deletedRestaurant => {
         req.flash('success_messages', '成功刪除店家!')
         return res.redirect('back')
+      })
+      .catch(err => next(err))
+  },
+  getOwnerships: (req, res, next) => {
+    const userAuthId = req.user.id
+    const keyword = req.query.keyword ? req.query.keyword.trim() : '' // 取得並修剪關鍵字
+    const whereClause = {
+      ...keyword.length > 0
+        ? {
+            [Op.or]: [
+              literal(`LOWER(Restaurant.name) LIKE '%${keyword.toLowerCase()}%'`),
+              literal(`LOWER(Restaurant.category) LIKE '%${keyword.toLowerCase()}%'`),
+              literal(`LOWER(Restaurant.location) LIKE '%${keyword.toLowerCase()}%'`)
+            ]
+          }
+        : {}
+    }
+
+    return User.findByPk(userAuthId, {
+      // 不可用raw:true和nest:true整理資料, 當關聯資料目標是陣列的時候, 前面的語法會導致結果變成單一物件; 要在後面用toJSON
+      attributes: { exclude: ['password'] }, // 避免密碼外洩
+      include: [{
+        model: Restaurant,
+        as: 'ownedRestaurants',
+        order: [['id', 'DESC']],
+        where: whereClause
+      }]
+    })
+      .then(user => {
+        const data = user?.ownedRestaurants?.map(item => ({ ...item.toJSON() })) || []
+
+        return res.render('restaurants/ownerships', {
+          restaurants: data,
+          isSearched: '/restaurants/ownerships', // 決定搜尋表單發送位置
+          keyword
+        })
       })
       .catch(err => next(err))
   }

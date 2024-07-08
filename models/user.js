@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
+      // 定義使用者與店家的多對多關係
+      User.belongsToMany(models.Restaurant, {
+        through: models.Ownership,
+        foreignKey: 'userId',
+        as: 'ownedRestaurants'
+      })
     }
   }
   User.init({

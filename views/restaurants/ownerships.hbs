@@ -2,7 +2,7 @@
 
 <div class="container">
   {{!-- 頁籤 --}}
-  {{> tabs route = 'restaurants'}}
+  {{> tabs route = 'ownerships'}}
 
   <div class="album-wrapper">
     {{#if restaurants}}
@@ -10,7 +10,7 @@
     <div class="card mb-3">
 
       {{!-- 點擊圖片也能查看單一餐廳 --}}
-      <a href="/restaurants/{{this.id}}">   
+      <a href="/restaurants/{{this.id}}">
         <img src="{{this.image}}" alt="{{this.name}}" class="card-img-top">
       </a>
 
@@ -20,8 +20,8 @@
           <i class="fas fa-utensils pr-2"></i>
           {{this.category}}
         </div>
-        
-        <div class="card-text text-secondary"> 
+
+        <div class="card-text text-secondary">
           <i class="fas fa-star fa-xs"></i>
           {{this.rating}}
         </div>
@@ -32,15 +32,18 @@
         <a href="/restaurants/{{this.id}}/edit" class="me-3 small-link btn-second-color">Edit</a>
         <a href="/restaurants/{{this.id}}" class="small-link btn-second-color">Detail</a>
         <form action="/restaurants/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
-          <button type="submit" class="small-link btn btn-link btn-second-color" style="text-decoration: none;" onclick="return confirm('確定要刪除{{this.name}}嗎?')">Delete</button>
+          <button type="submit" class="small-link btn btn-link btn-second-color" style="text-decoration: none;"
+            onclick="return confirm('確定要刪除{{this.name}}嗎?')">Delete</button>
         </form>
       </div>
-      
+
     </div>
     {{/each}}
+
     {{else}}
-    <h5 class="ms-3">尚無刊登店家...</h5>
-    
+    <h5 class="ms-3">尚未擁有店家...</h5>
+
     {{/if}}
+
   </div>
 </div>
