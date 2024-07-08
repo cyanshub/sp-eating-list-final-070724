@@ -1,9 +1,9 @@
-<form action="/restaurants/{{restaurant.id}}?_method=PUT" method="post">
+<form action="/restaurants/{{restaurant.id}}?_method=PUT" method="post" enctype="multipart/form-data">
   <div class="container">
     {{!-- 頁籤 --}}
     {{> tabs route = 'edit'}}
 
     {{!-- 店家表單 --}}
-    {{> restaurant-form}}
+    {{> restaurant-form route = 'edit'}}
   </div>
 </form>

@@ -25,7 +25,6 @@
     <div class="form-row mb-1">
       <span class="text-secondary-emphasis">
         <i class="fas fa-utensils pr-2"></i><label class="form-label cursor-pointer" for="category">
-
           <strong>類別:</strong>
         </label>
       </span>
@@ -37,12 +36,9 @@
       <span class="text-secondary-emphasis">
         <i class="fas fa-map-marker-alt pr-2"></i>
         <label class="form-label cursor-pointer" for="location">
-
           <strong>地址:</strong>
         </label>
       </span>
-
-
       <input type="text" class="" id="location" name="location" value="{{restaurant.location}}" placeholder="請輸入店家地址">
       <input type="text" class="" id="googleMap" name="googleMap" value="{{restaurant.googleMap}}" placeholder="google map 連結">
     </div>
@@ -52,11 +48,9 @@
       <span class="text-secondary-emphasis">
         <i class="fas fa-mobile-alt pr-2"></i>
         <label class="form-label cursor-pointer" for="phone">
-
           <strong>電話:</strong>
         </label>
       </span>
-
       <input type="text" class="" id="phone" name="phone" value="{{restaurant.phone}}" placeholder="請輸入店家電話">
     </div>
 
@@ -66,7 +60,6 @@
       <span class="text-secondary-emphasis">
         <i class="fas fa-star fa-xs"></i>
         <label class="form-label cursor-pointer" for="rating">
-
           <strong>評價:</strong>
         </label>
       </span>
@@ -82,10 +75,9 @@
         <strong>敘述</strong>
       </label>
       <textarea class="form-control" id="description" name="description" rows="3">
-             {{restaurant.description}}
-          </textarea>
+        {{restaurant.description}}
+      </textarea>
     </div>
-
 
     {{!-- 封面圖片 --}}
     <div class="form-row mb-1">
@@ -96,12 +88,13 @@
       <input type="file" class="form-control form-control-file" id="image" name="image" value="{{restaurant.image}}">
     </div>
 
-
-
     {{!-- 按鈕 --}}
     <div class="d-flex justify-content-center mt-4">
       <a class="btn btn-outline-secondary me-3" href="/restaurants">Back</a>
-      <button type="submit" class="btn btn-outline-success">Save</button>
+      <button type="submit" class="btn btn-outline-success">
+        {{#ifCond route 'new'}}Submit{{/ifCond}}
+        {{#ifCond route 'edit'}}Save{{/ifCond}}
+      </button>
     </div>
 
   </div>

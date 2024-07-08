@@ -31,7 +31,7 @@
         <a href="/restaurants/{{this.id}}/edit" class="me-3 small-link btn-second-color">Edit</a>
         <a href="/restaurants/{{this.id}}" class="small-link btn-second-color">Detail</a>
         <form action="/restaurants/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
-          <button type="submit" class="small-link btn btn-link btn-second-color" style="text-decoration: none;">Delete</button>
+          <button type="submit" class="small-link btn btn-link btn-second-color" style="text-decoration: none;" onclick="return confirm('確定要刪除{{this.name}}嗎?')">Delete</button>
         </form>
       </div>
       

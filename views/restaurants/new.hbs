@@ -1,9 +1,9 @@
-<form action="/restaurants" method="post">
+<form action="/restaurants" method="post" enctype="multipart/form-data">
   <div class="container">
     {{!-- 頁籤 --}}
     {{> tabs route = 'new'}}
 
     {{!-- 店家表單 --}}
-    {{> restaurant-form}}
+    {{> restaurant-form route = 'new'}}
   </div>
 </form>
