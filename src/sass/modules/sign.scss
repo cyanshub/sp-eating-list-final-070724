@@ -19,9 +19,10 @@
 
   @media(max-width: 40em) {
     width: 95%;
-    position: relative;
+    position: absolute;
     margin: 2.5% auto 0 auto;
-    left: 0%;
+    top: 20%;
+    left: 3%;
     -webkit-transform: translate(0%, 0%);
     -moz-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%);
