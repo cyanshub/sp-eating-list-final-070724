@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
 },
 // 驗證使用者 Authenticate user
 (req, email, password, cb) => {
-  User.fincb({ where: { email } })
+  User.findOne({ where: { email } })
     .then(user => {
       // 先驗證帳號是否輸入正確: 若否則回傳 cb(null, false, ...)
       if (!user) return cb(null, false, req.flash('error_messages', '帳號或密碼輸入錯誤!'))
