@@ -1,10 +1,17 @@
+// 載入環境變數
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const bcrypt = require('bcryptjs')
+const FacebookStrategy = require('passport-facebook')
 
 // 載入 model
 const { User } = require('../models')
 
+// 實作本地登入策略
 // 設置本地的登入策略 Set up passport strategy
 passport.use(new LocalStrategy({
   usernameField: 'email', // 加入客製化參數 customize user field, 預設是 username
@@ -13,7 +20,7 @@ passport.use(new LocalStrategy({
 },
 // 驗證使用者 Authenticate user
 (req, email, password, cb) => {
-  User.findOne({ where: { email } })
+  User.fincb({ where: { email } })
     .then(user => {
       // 先驗證帳號是否輸入正確: 若否則回傳 cb(null, false, ...)
       if (!user) return cb(null, false, req.flash('error_messages', '帳號或密碼輸入錯誤!'))
@@ -24,6 +31,43 @@ passport.use(new LocalStrategy({
         // 當帳號存在, 且密碼一致才可回傳登入成功
         return cb(null, user)
       })
+    })
+}))
+
+// Facebook OAuth2 登入策略
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+  profileFields: ['email', 'displayName']
+},
+(accessToken, refreshToken, profile, cb) => {
+  // 可以觀察物件結構
+  // console.log('access token:', accessToken)
+  // console.log('profile:', profile)
+
+  const email = profile.emails[0].value
+  const name = profile.displayName
+
+  // 根據輸入帳密, 比對使用者資料表的資訊, 從資料表撈資料
+  return User.findOne({
+    attributes: ['id', 'name', 'email'],
+    where: { email: email },
+    raw: true
+  })
+    .then(user => {
+      // 如果資料庫, 曾經有吻合使用者, 則直接進入下一步
+      if (user) return cb(null, user)
+
+      // 如果資料庫沒有相符合使用者, 則在資料路建立資料後進入下一步
+      const randomPwd = Math.random().toString(36).slice(-8)
+      return bcrypt.hash(randomPwd, 10)
+        .then(hash => User.create({ name, email, password: hash }))
+        .then(user => cb(null, { id: user.id, name: user.name, email: user.email }))
+    })
+    .catch(err => {
+      err.errorMessage = '登入失敗'
+      return cb(err)
     })
 }))
 
