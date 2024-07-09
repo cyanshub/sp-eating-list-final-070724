@@ -7,5 +7,5 @@ temp/
 .idea
 mysql_db_backup
 
-public/dist/css
+
 src/public/dist/css

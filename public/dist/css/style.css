@@ -1,0 +1,385 @@
+@charset "UTF-8";
+/* reset:start */
+html {
+  box-sizing: border-box;
+  /*設定 body 計算模式*/
+  scroll-behavior: smooth;
+  /* 設定網頁順暢滑動 */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* 清除瀏覽器預設 viewport */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  line-height: 1;
+  list-style: none;
+}
+
+table {
+  border: none;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: initial;
+}
+
+/* 清除超連結預設底線 */
+a {
+  text-decoration: none;
+}
+
+/* reset:end */
+.form-signup,
+.form-signin {
+  width: 40%;
+  min-width: 320px;
+  max-width: 475px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 40em) {
+  .form-signup,
+  .form-signin {
+    width: 95%;
+    position: absolute;
+    margin: 2.5% auto 0 auto;
+    top: 20%;
+    left: 3%;
+    transform: translate(0%, 0%);
+  }
+}
+.form-signup form,
+.form-signin form {
+  display: block;
+  width: 100%;
+  padding: 2em;
+}
+.form-signup h2,
+.form-signin h2 {
+  width: 100%;
+  color: #04dada;
+  font-family: "open sans condensed";
+  font-size: 1.5em;
+  display: block;
+  background: #2a2a2a;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0.75em 1em 0.75em 1.5em;
+  box-shadow: inset 0px 1px 1px fadeout(white, 95%);
+  border: 1px solid #1d1d1d;
+  text-shadow: 0px 1px 1px #1d1d1d;
+  margin: 0;
+  font-weight: 200;
+  text-align: center;
+}
+.form-signup input,
+.form-signin input {
+  display: block;
+  margin: auto auto;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  color: #757575;
+}
+.form-signup input:focus,
+.form-signin input:focus {
+  outline: none;
+}
+.form-signup .btn,
+.form-signin .btn {
+  display: block;
+  background: #027676;
+  border: 1px solid #025d5d;
+  padding: 0.5em 2em;
+  color: white;
+  margin-right: 0.5em;
+  margin: 0 auto;
+  box-shadow: inset 0px 1px 0px fadeout(white, 80%);
+}
+.form-signup .btn:hover,
+.form-signin .btn:hover {
+  background: #028f8f;
+}
+.form-signup .btn:active,
+.form-signin .btn:active {
+  background: #027676;
+  box-shadow: inset 0px 1px 1px fadeout(black, 90%);
+}
+.form-signup .btn:focus,
+.form-signin .btn:focus {
+  outline: none;
+}
+.form-signup .sign,
+.form-signin .sign {
+  margin-top: 1em;
+  margin-bottom: 0em;
+  display: flex;
+  justify-content: end;
+}
+.form-signup .sign a,
+.form-signin .sign a {
+  color: #03a8a8;
+  line-height: 0.9em;
+  text-decoration: none;
+  font-size: 0.9em;
+  position: relative;
+  right: 0;
+}
+.form-signup .sign a:hover,
+.form-signin .sign a:hover {
+  color: #025d5d;
+}
+.form-signup .sign a:active,
+.form-signin .sign a:active {
+  background: #027676;
+  box-shadow: inset 0px 1px 1px fadeout(black, 90%);
+}
+
+@media screen and (max-width: 800px) {
+  .form-signin {
+    margin-top: 6rem;
+  }
+}
+/* 設定網頁主體: start */
+html,
+body {
+  font-family: "open sans", helvetica, arial, sans;
+  background: no-repeat center center fixed;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  color: #2a2a2a;
+}
+
+.btn-color {
+  color: #027676;
+}
+
+.btn-second-color {
+  color: #4f0c0c;
+}
+
+.background-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.small-link {
+  font-size: 1rem;
+}
+
+.text-container {
+  color: #2a2a2a;
+  white-space: nowrap;
+  /* 防止文字換行 */
+  overflow: hidden;
+  /* 隱藏超出容器的文字 */
+  text-overflow: ellipsis;
+  /* 使用省略號表示超出的部分 */
+}
+
+.image-container {
+  overflow: hidden;
+  /* 隱藏溢出部分 */
+}
+
+.image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* 保持原始比例，填滿容器 */
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.margin-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+#successAlert,
+#errorAlert,
+#warningAlert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1050;
+  /* 使其位於較高層級，避免被其他元素遮蔽 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 添加陰影效果 */
+}
+
+a.nav-link {
+  color: #495057 !important;
+}
+
+a.nav-link.text-container {
+  color: rgba(255, 255, 255, 0.5490196078) !important;
+}
+
+a.nav-link.active {
+  color: #4f0c0c !important;
+  background-color: #FFFFFF !important;
+}
+
+/* 顏色參數化 */
+:root {
+  --main-text-color: #212529;
+  --main-background-color: #f6f7f8;
+  --navbar-brand-text-color: #4592af;
+  --navbar-brand-hover-text-color: #226089;
+  --search-bar-outer-background-color: #fce2cf;
+  --search-bar-outer-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  --search-bar-inner-text-color: #9b4b4b;
+  --btn-major-text-color: #fff;
+  --btn-major-background-color: #9b4b4b;
+  --placeholder-text-color: #aaaaaa;
+  --form-control-focus-shadow: none;
+  --form-control-focus-border-color: #ced4da;
+  --card-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  --card-text-color: #666666;
+  --restaurant-show-title-text-color: white;
+  --restaurant-show-title-text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  --text-shadow: 1px 1px black;
+}
+
+/* 制定 banner 樣式 */
+.banner {
+  position: relative;
+  z-index: -10;
+  margin: -5px;
+  height: 300px;
+  background-image: url("/images/banner/banner-photo-1.jpg");
+  filter: blur(3px);
+}
+
+/* 撰寫 search-bar 樣式 */
+.search-bar .search-bar-outer {
+  margin: 0 auto;
+  max-width: 680px;
+  background: var(--search-bar-outer-background-color);
+  border-radius: 8px;
+  padding: 20px 30px;
+  margin-top: -120px;
+  box-shadow: var(--search-bar-outer-shadow);
+  -webkit-box-shadow: var(--search-bar-outer-shadow);
+  -moz-box-shadow: var(--search-bar-outer-shadow);
+}
+
+.search-bar .search-bar-inner h4 {
+  color: var(--search-bar-inner-text-color);
+}
+
+.search-bar .btn-major {
+  color: var(--btn-major-text-color);
+  background: var(--btn-major-background-color);
+}
+
+.form-control::-moz-placeholder {
+  color: var(--placeholder-text-color);
+  font-size: 0.8rem;
+}
+
+.form-control::placeholder {
+  color: var(--placeholder-text-color);
+  font-size: 0.8rem;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border: var(--form-control-focus-border-color);
+}
+
+/* 撰寫圖片集樣式 */
+.album-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-gap: 1.5rem;
+}
+
+.card {
+  box-shadow: var(--card-shadow);
+  -webkit-box-shadow: var(--card-shadow);
+  -moz-box-shadow: var(--card-shadow);
+  width: 100%;
+  height: 95%;
+  overflow: hidden;
+}
+
+.card img {
+  display: block;
+  height: 180px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-text {
+  color: var(--card-text-color);
+  font-size: 0.8rem;
+}
+
+/* 導入媒體查詢 */
+@media screen and (max-width: 992px) {
+  .card img {
+    height: 115px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .restaurant-show-title {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 575px) {
+  .card img {
+    height: auto;
+  }
+  .restaurant-show-title {
+    font-size: 2rem;
+  }
+}/*# sourceMappingURL=style.css.map */
