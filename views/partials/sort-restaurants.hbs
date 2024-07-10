@@ -1,0 +1,30 @@
+<div class="sort-wrapper row form-row mb-3 d-flex align-items-center">
+  <div class="col-auto">
+    <label class="form-label mb-0" for="sort">餐廳排序</label>
+  </div>
+  <div class="col">
+    <select class="" id="sort" name="sort"
+      style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ced4da; background-color: #fff; min-width:100px">
+      {{!-- 提示選項 --}}
+      <option value="" {{#ifCond sort '' }}selected {{/ifCond}} style="color:gray">Sort</option>
+
+      {{!-- 依傳入資料決定各個選項 --}}
+      {{#each sorts}}
+      <option value="{{this.id}}" {{#ifCond ../sort this.id }}selected {{/ifCond}}>{{this.name}}</option>
+      {{/each}}
+
+    </select>
+  </div>
+</div>
+
+{{!-- 希望點擊選項就直接傳出, 而不需要靠 form 表單的 btn:submit --}}
+{{!-- 在 sort 選單設置監聽器, 點擊時跳轉畫面(保留搜尋結果) --}}
+<script>
+  document.getElementById('sort').addEventListener('change', function () {
+    var sortValue = this.value
+    var keyword = "{{keyword}}"  // 根據你的上下文，這裡可以是動態的或固定的
+
+    var url = "?keyword=" + encodeURIComponent(keyword) + "&sort=" + sortValue;
+    window.location.href = url
+  });
+</script>

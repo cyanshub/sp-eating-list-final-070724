@@ -4,6 +4,9 @@
   {{!-- 頁籤 --}}
   {{> tabs route = 'restaurants'}}
 
+  {{!-- 用於排序餐廳的 select 選單 --}}
+  {{> sort-restaurants}}
+  
   <div class="album-wrapper">
     {{#if restaurants}}
     {{#each restaurants}}

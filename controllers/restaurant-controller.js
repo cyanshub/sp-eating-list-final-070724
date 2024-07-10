@@ -7,6 +7,25 @@ const { localCoverHandler } = require('../helpers/file-helpers') // 負責上傳
 
 const restaurantController = {
   getRestaurants: (req, res, next) => {
+    const sorts = [
+      { id: 1, name: '序號(升序)' },
+      { id: 2, name: '序號(降序)' },
+      { id: 3, name: '類別' },
+      { id: 4, name: '地區' },
+      { id: 5, name: '店名(升序)' },
+      { id: 6, name: '店名(降序)' }]
+
+    const sort = Number(req.query.sort) // 拿取排序變數, 判斷要依什麼進行sort排序
+    let orderClause = ''
+    if (sort === 1) orderClause = [['id', 'ASC']]
+    if (sort === 2) orderClause = [['id', 'DESC']]
+    if (sort === 3) orderClause = [['category', 'ASC']]
+    if (sort === 4) orderClause = [['location', 'ASC']]
+    if (sort === 5) orderClause = [['name', 'ASC']]
+    if (sort === 6) orderClause = [['name', 'DESC']]
+
+    console.log('測試:', sort)
+
     const keyword = req.query.keyword ? req.query.keyword.trim() : '' // 取得並修剪關鍵字
     const whereClause = {
       ...keyword.length > 0
@@ -22,14 +41,17 @@ const restaurantController = {
     return Restaurant.findAndCountAll({
       raw: true,
       where: whereClause,
-      order: [['id', 'DESC']]
+      order: sort ? orderClause : [['id', 'DESC']]
     })
       .then(restaurants => {
         const data = restaurants.rows
+
         return res.render('restaurants/restaurants', {
           restaurants: data,
           isSearched: '/restaurants', // 決定搜尋表單發送位置
-          keyword
+          keyword,
+          sorts,
+          sort
         })
       })
       .catch(err => next(err))
