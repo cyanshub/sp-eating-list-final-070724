@@ -47,8 +47,87 @@
 
 
 
+## 安裝
+### 環境需求
+- Node.js ^14.x: 查看版本, 安裝對應版本後並切換到指定版本
+  ```bash
+  node -v
+  nvm list available
+  nvm install 14.16.0
+  nvm use 14.16.0
+  ```
 
-## 目錄結構
+- MySQL: 例如 MySQL Workbench 8.0
+
+
+### 安裝步驟
+1. 確保已安裝 Node.js（版本 ^14.x）。
+- FORK 此專案到本地端：
+   ```bash
+   git clone https://github.com/your-username/sp-eating-list-final-070724.git
+   ```
+
+- 開啟專案目錄並安裝相依套件：
+   ```bash
+   cd sp-eating-list-final-070724
+   npm install
+   ```
+
+- 設置環境變數：在專案根目錄建立 .env 文件, 並設置必要的環境變數, 例如：
+  - SESSION_SECRET=啟用 session 功能的密鑰(可自訂)
+  - USER_PASSWORD=使用者種子資料的密碼(可自訂, 例: 12345678)
+
+  - 以下環境變數有與第三方平台登入有關, Client 的 id、secret、callback url可由下方連結取得和設定
+    - FACEBOOK_CLIENT_ID=應用程式編號, 由個人 FB 開發者平台取得
+    - FACEBOOK_CLIENT_SECRET=應用程式密鑰, 由個人 FB 開發者平台取得
+    - FACEBOOK_CALLBACK_URL=伺服器網域/oauth2/redirect/facebook (處理驗證後路由)
+    - GOOGLE_CLIENT_ID=用戶端編號 (由個人 Google Cloud Platform 憑證取得)
+    - GOOGLE_CLIENT_SECRET=用戶端密鑰 (由個人 Google Cloud Platform 憑證取得)
+    - GOOGLE_CALLBACK_URL=伺服器網域/auth/google/callback (處理驗證後路由)
+
+- 打開 SQL 資料庫操作介面 (EX: My SQL Workbench 8.0)
+    建立專案資料庫所使用的 Schema
+    ```bash
+    CREATE SCHEMA `eating-list` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+    ```
+
+    若 Schema 名稱想自己決定時, 可前往 config/config.json 修改 "development" : { "database": "自訂 Schema 名稱" }
+
+
+## 啟動專案
+1. 啟動伺服器
+    ```bash
+    npm run start
+    ```
+    或使用 nodemon 進行開發
+    ```bash
+    npm run dev
+    ```
+
+- 建立資料庫
+    使用 Sequelize CLI 進行資料庫遷移
+    ```bash
+    npx sequelize db:migrate
+    ```
+
+- 建立種子資料
+    使用 Sequelize CLI 建立種子資料
+    ```bash
+    npx sequelize db:seed:all
+    ```
+
+
+## 主要技術
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Sequelize](https://sequelize.org/)
+- [MySQL](https://www.mysql.com/)
+- [Handlebars](https://handlebarsjs.com/)
+- [Facebook OAuth 2.0](https://developers.facebook.com/)
+- [Google OAuth 2.0](https://developers.google.com/?hl=zh-tw)
+
+
+## 專案結構
 ```markdown
 .
 ├── app.js
