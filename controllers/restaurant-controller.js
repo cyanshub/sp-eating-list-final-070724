@@ -8,24 +8,15 @@ const { localCoverHandler } = require('../helpers/file-helpers') // 負責上傳
 const restaurantController = {
   getRestaurants: (req, res, next) => {
     const sorts = [
-      { id: 1, name: '序號(升序)' },
-      { id: 2, name: '序號(降序)' },
-      { id: 3, name: '類別' },
-      { id: 4, name: '地區' },
-      { id: 5, name: '店名(升序)' },
-      { id: 6, name: '店名(降序)' }]
+      { id: 1, name: '序號(升序)', orderClause: [['id', 'ASC']] },
+      { id: 2, name: '序號(降序)', orderClause: [['id', 'DESC']] },
+      { id: 3, name: '類別', orderClause: [['category', 'ASC']] },
+      { id: 4, name: '地區', orderClause: [['location', 'ASC']] },
+      { id: 5, name: '店名(升序)', orderClause: [['name', 'ASC']] },
+      { id: 6, name: '店名(降序)', orderClause: [['name', 'DESC']] }]
 
     const sort = Number(req.query.sort) // 拿取排序變數, 判斷要依什麼進行sort排序
-    let orderClause = ''
-    if (sort === 1) orderClause = [['id', 'ASC']]
-    if (sort === 2) orderClause = [['id', 'DESC']]
-    if (sort === 3) orderClause = [['category', 'ASC']]
-    if (sort === 4) orderClause = [['location', 'ASC']]
-    if (sort === 5) orderClause = [['name', 'ASC']]
-    if (sort === 6) orderClause = [['name', 'DESC']]
-
-    console.log('測試:', sort)
-
+    const orderClause = sorts.find(s => s.id === sort)?.orderClause // 找出排序條件
     const keyword = req.query.keyword ? req.query.keyword.trim() : '' // 取得並修剪關鍵字
     const whereClause = {
       ...keyword.length > 0
